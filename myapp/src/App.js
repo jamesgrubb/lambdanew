@@ -18,13 +18,25 @@ function App(props) {
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hi {toTitleCase(props.match.params.name)}</p>
         <Link to="/about">About</Link>
-        <form>
+        <form name="contact" method="post">
+          <input type="hidden" name="form-name" value="contact" />
           <p>
-            <label htmlFor="eating">
-              Hi {toTitleCase(props.match.params.name)} let me know if you are
-              having lunch
+            <label>
+              Your Name: <input type="text" name="name" />
             </label>
-            <input type="checkbox" name="form" id="eating" />
+          </p>
+          <p>
+            <label>
+              Your Email: <input type="email" name="email" />
+            </label>
+          </p>
+          <p>
+            <label>
+              Message: <textarea name="message" />
+            </label>
+          </p>
+          <p>
+            <button type="submit">Send</button>
           </p>
         </form>
       </header>
