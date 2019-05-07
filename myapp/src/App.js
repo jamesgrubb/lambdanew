@@ -5,15 +5,28 @@ import "./App.css";
 
 const About = () => <h1>About</h1>;
 
-function App() {
+function App(props) {
+  console.log(props.match);
+  function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+  }
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <p>Hi {toTitleCase(props.match.params.name)}</p>
         <Link to="/about">About</Link>
+        <form>
+          <p>
+            <label htmlFor="eating">
+              Hi {toTitleCase(props.match.params.name)} let me know if you are
+              having lunch
+            </label>
+            <input type="checkbox" name="form" id="eating" />
+          </p>
+        </form>
       </header>
     </div>
   );
@@ -22,8 +35,8 @@ function App() {
 const example = () => {
   return (
     <Router>
-      <Route exact path="/" component={App} />
-      <Route path="/about" component={About} />
+      <Route exact path="/:name" component={App} />
+      <Route path="/about/:name" component={About} />
     </Router>
   );
 };
