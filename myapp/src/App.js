@@ -1,6 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
+import "./App.css";
+
+const About = () => <h1>About</h1>;
 
 function App() {
   return (
@@ -10,17 +13,19 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Link to="/about">About</Link>
       </header>
     </div>
   );
 }
 
-export default App;
+const example = () => {
+  return (
+    <Router>
+      <Route exact path="/" component={App} />
+      <Route path="/about" component={About} />
+    </Router>
+  );
+};
+
+export default example;
